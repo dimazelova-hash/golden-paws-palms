@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html class="light" lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Детали Занятия | Golden Paws & Palms</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <script id="tailwind-config">
+          tailwind.config = {
+            darkMode: "class",
+            theme: {
+              extend: {
+                colors: {
+                  "primary": "#79603e",
+                  "surface": "#fffcf7",
+                  "surface-container-low": "#fcf9f3",
+                  "on-surface": "#383833",
+                },
+                fontFamily: {
+                  "headline": ["Noto Serif", "serif"],
+                  "body": ["Plus Jakarta Sans", "sans-serif"]
+                }
+              },
+            },
+          }
+    </script>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fffcf7; color: #383833; transition: background-color 0.3s, color 0.3s; }
+        .dark body { background-color: #1a1a1a; color: #f0f0f0; }
+        .glass-panel { background: rgba(255, 252, 247, 0.6); backdrop-filter: blur(20px); }
+        .dark .glass-panel { background: rgba(26, 26, 26, 0.6); }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-8">
+    <nav class="fixed top-0 w-full z-50 glass-panel border-b border-gray-200/10 px-8 py-4 flex justify-between items-center">
+        <a href="index.html" class="font-headline text-xl font-bold italic text-primary">Golden Paws & Palms</a>
+        <button onclick="window.history.back()" class="flex items-center gap-2 text-sm uppercase tracking-widest font-bold text-on-surface/70 hover:text-primary transition-all">
+            <span class="material-symbols-outlined">arrow_back</span> Назад
+        </button>
+    </nav>
+
+    <div id="content" class="max-w-4xl w-full bg-white dark:bg-zinc-900 rounded-[3rem] p-12 md:p-20 shadow-2xl mt-20 opacity-0 transition-opacity duration-500">
+        <h1 id="class-title" class="font-headline text-5xl md:text-7xl mb-8 italic">Загрузка...</h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
+            <div>
+                <p id="class-desc" class="text-xl text-on-surface-variant leading-relaxed mb-10">Пожалуйста, подождите, мы загружаем детали занятия.</p>
+                <div class="space-y-4">
+                    <div class="flex items-center gap-4 text-primary">
+                        <span class="material-symbols-outlined">person</span>
+                        <span id="class-coach" class="font-bold"></span>
+                    </div>
+                    <div class="flex items-center gap-4 text-primary">
+                        <span class="material-symbols-outlined">location_on</span>
+                        <span id="class-location" class="font-bold"></span>
+                    </div>
+                </div>
+            </div>
+            <div id="class-img" class="rounded-2xl overflow-hidden shadow-xl aspect-square bg-gray-100">
+                <img src="" alt="" class="w-full h-full object-cover hidden">
+            </div>
+        </div>
+
+        <button onclick="location.href='booking.html'" class="w-full bg-primary text-white py-6 rounded-full font-bold text-xl hover:shadow-2xl transition-all">Забронировать это занятие</button>
+    </div>
+
+    <script>
+        const classData = {
+            'morning-zen': {
+                title: 'Утренний Дзен',
+                desc: 'Мягкая утренняя практика, направленная на пробуждение тела и разума. Вас будут сопровождать игривые золотистые ретриверы, которые помогут начать день с улыбки.',
+                coach: 'Анна Петрова',
+                location: 'Зал "Свет"',
+                img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBrASz8b9BL5imzwhoJScXN6JUkl0SdpCcLNwQm_LzODT19o1JZ9x7b1RKcmYpDQn-_5heKPsmaEpncaB4xRKnwpR4i4X_jrE4kCTfA9RnVU3L_i5vMnzDr7uqLdIi3NKUex8s5xljYdcKV1plNbeYKoCQH-ZRhcWuTLfAcelHQ2IFSYZolbshk63z7ztnVT7UTNyV6TMX6u5dft74I2SDyI8bfI6qT1iB6c4pzb8m5YhwJ0UlzEpU9RcMOWt9IBq3uEq8UsWeK0v8l'
+            },
+            'evening-med': {
+                title: 'Вечерняя Медитация',
+                desc: 'Глубокое расслабление после рабочего дня в компании спокойных корги. Практика медитации и мягких растяжек.',
+                coach: 'Иван Сергеев',
+                location: 'Открытая Терраса',
+                img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBhce0Dg-G1SK5sl9RTqpQYnKhq_Vwfm53MqHr-8et_TOhbE_kfZRhT2bI8NSyLOvrZjsCQ8Zw9Eu6yTYrQhNmaT8ks_RnRwVDC_8352-x0_Hq1KVeVI_2pMHm63zWhe8Wynkap_hf42-Opyq9qMBjMVYHjMidcLt-W1BInZ72HpgZ6069Ia5FQDwLFEEbHsSZlYsnvp_ky5N6IAEujAwQUHSXQy4SJulgiNbnGka1wBZePWjato69MsNue_PdTFLChmZr9Q7vzjeWd'
+            },
+            'puppy-pilates': {
+                title: 'Пилатес с Малышами',
+                desc: 'Динамичное занятие для укрепления мышц кора. Шпицы добавят хаоса и веселья в каждое ваше движение!',
+                coach: 'Елена Соколова',
+                location: 'Зал "Энергия"',
+                img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAGmtTC3XKWJHgKYaeBuzmBNShCWj7GtDtW1yiDC_fWmUuxY-9vxnvvCU8aRcQxFSwgQL0CB3ZmG2IlsOPbdf_FL2t8lF_KgT61uXQnqoZY5UsOSPAXy633dURQaZ7EWvHlTaBctKHGKM87hafSNtAM-jdSBmwd3JErVCgtOZaccAhvcbXQdVuX9XuhYxhZd7Xc1P9JZdPcDkzJ5r2tg-Es7q2BKX-MZmQRV4Rgf8jwMpW0a-Uex_LhQrw6trswTiRjZdOAy_SciS8B'
+            },
+            'beginner-yoga': {
+                title: 'Йога для Начинающих',
+                desc: 'Идеальный старт для тех, кто никогда не стоял в позе собаки мордой вниз. Наши бигли покажут, как это делается правильно.',
+                coach: 'Марк Волков',
+                location: 'Зеленый Сад',
+                img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD1fcg-wSselBZwsNXm-V3IY8i5RB0Bap9Gt7QMl_nE4phfmF_3sQPR420CJ2fhCnHfXDTirF70kfrH_WNL8QZH9xA8Vo3VGTYmroSofsEcofVj8lfewGBpNr1zOzKzoUTlenno3SFA_dUdY9ZonmNQyM2MHpvkg1VBke-z3jiujgVHqxfCgDLr2_c2iizPiVMFlRS7V3SrUdcaAaLQDTG-7QmEC7zGswHw8OZb5okVAxdwBm7c4hg2MFMBUy9d1HCQKQvHJ7sVgLb6'
+            },
+            'power-flow': {
+                title: 'Силовой Поток',
+                desc: 'Интенсивная тренировка для тех, кто ищет вызов. Энергичные лабрадоры не дадут вам расслабиться ни на секунду.',
+                coach: 'София Лебедева',
+                location: 'Главный Зал',
+                img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAIR-aqQqTGOe9rvvw8_kK1fvlqWjRIhnxcBViNU7UOLIPifqQswMLiyCMHUrXqAJYYgkNHUSuf4jiWOWHFVwgchHhgQIh4NIoy6q2zJm-dZ4VFEEz94n5lCQkU6bvrur8MMz1TmSBafkoNvWLeHNtackc-R48auv2j_OeVnNUsBMi-Rqz1Y6O1wFk1mM3tL_Tu9U0tINXCmjE4Gpxk-vwPuozkKNz2uvJcaKS2vJul4EJdO0Ok04Gy5oNVHQybU_-2b7m4OyvR0yvF'
+            },
+            'vinyasa-flow': {
+                title: 'Виньяса-Флоу',
+                desc: 'Грациозная практика перетекающих асан. Бордер-колли добавят интеллекта и фокуса в вашу сессию.',
+                coach: 'Дмитрий Орлов',
+                location: 'Зал "Поток"',
+                img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAQ1ykBxWTFCYyfHMNz1HGprFPo1Ha7Afd23NYj3Qp9t3YYE5vmFjj9H-Mgfc_AJK-ypCs6NFAvYBSTv9-KCEKMSkdNXI9eRnmjy3OMnDv38yr3MWM_64X3uNNmVPLBA9kZeAJYIi3CxD4whzQQnZDaQIRROuXd1qDc-gHRvLcf8YilzXehrfsehU3T0sGZnHMEv3VvH2qDobmagNTAthYGFd2BIAAIZsxmncoc8uN-B-yGlTEwjyNYe3pt6ZQKXBg1LRVMFdR8jzXk'
+            },
+            'family-rhythm': {
+                title: 'Семейный Ритм',
+                desc: 'Занятие для всей семьи с детьми. Дружелюбные мопсы сделают эту встречу незабываемой для малышей и взрослых.',
+                coach: 'Мария Козлова',
+                location: 'Игровая Зона',
+                img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDPStqZgiH3S6wQKjlFGNc-ZW3rX9hYw7UVTXEOE6PBgho3lmlZt7KHnGSGMK3-Pvyw2QdFFZQGpHvl3O3AGNMZ-pVC_GQ5745AUUqgfL0bKY-HAzPvIiWnkpm-nPBPiO_ewv1cL8CdiP5CZAMDgi83BUEZnZ5dDpqm984_3DgMSmqFM4z8EzU0TkY1qibrM2T1v7HplE8afTOrsUtGJK9uVY40qbLXNGG-xBuBJQs8-1hmd0CXNl7v12zgRFJUoWy_UibKKWBEyVq3'
+            },
+            'night-shanti': {
+                title: 'Ночной Шанти',
+                desc: 'Практика при свечах для глубокого сна. Самоеды будут вашими пушистыми облаками в этом ночном путешествии.',
+                coach: 'Алексей Морозов',
+                location: 'Sky Studio',
+                img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDM3o1YqgFm_ZgSes7qjZwLJnar4z7M1p9KvghlRsGB2ICLJZ14dHE40H2nCX8ce5sjRXGa58nEy3vdqEr9QzU0Y_pb5vvAq3NHI64qUQTDzX5nP9yHVIupqc5rM9S4o0DAF9pYT97Inl3O6gMjNXraI9eQGdXirTpWrs-BaKMvf0in6wF7sWR9ndo7leM0BlDchJTTTf0L_faa3ZnI-C8cvVeReWV0NNiuYd7gcuGUCW35CyZhBcXLIGukDABHQLaRvYzotSwkzF39'
+            }
+        };
+
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get('id');
+        const data = classData[id];
+
+        if (data) {
+            document.getElementById('class-title').innerText = data.title;
+            document.getElementById('class-desc').innerText = data.desc;
+            document.getElementById('class-coach').innerText = 'Тренер: ' + data.coach;
+            document.getElementById('class-location').innerText = 'Место: ' + data.location;
+            const imgEl = document.querySelector('#class-img img');
+            imgEl.src = data.img;
+            imgEl.classList.remove('hidden');
+            document.getElementById('content').classList.remove('opacity-0');
+        } else {
+            document.getElementById('class-title').innerText = 'Класс не найден';
+            document.getElementById('content').classList.remove('opacity-0');
+        }
+
+        // Simple local storage theme handling
+        if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+</body>
+</html>
